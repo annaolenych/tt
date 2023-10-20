@@ -1,6 +1,7 @@
 import LoginForm from "../../components/LoginForm/LoginForm"
 
+
 const LoginPage = () => {
-    return (<div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}><LoginForm /></div>)
+    return (<div className="login-page" ><LoginForm /></div>)
 }
 export default LoginPage;
