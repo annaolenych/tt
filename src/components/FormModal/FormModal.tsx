@@ -30,10 +30,6 @@ export const FormModal = ({ customer }) => {
                 </span>
             </button>
             <ReactModal isOpen={isOpen}>
-                {JSON.stringify(customer)}
-
-
-
 
                 <form onSubmit={handleSubmit(async (data: object) => {
                     try {

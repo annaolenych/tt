@@ -148,3 +148,7 @@ svg {
     flex-direction: column;
     justify-content: center; 
    }
+   .inputBox{
+ gap: 5px;
+ margin-bottom:10px;
+ }

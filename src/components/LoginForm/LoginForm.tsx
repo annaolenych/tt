@@ -33,12 +33,12 @@ const LoginForm = () => {
 
       )}>
         {error && <span className='errors-message'>{error}</span>}
-        <div>
+        <div className="inputBox"  >
 
-          <input placeholder='Username' {...register("username", { required: "username is required", maxLength: {value:150, message:"Max username length is 150"} })} />
+          <input placeholder='Username' {...register("username", { required: "Username is required", maxLength: {value:150, message:"Max username length is 150"} })} />
           <div>{errors?.username && <span className='errors-message'>{errors.username.message.toString()}</span>}</div>
         </div>
-        <div>
+        <div className="inputBox" >
 
           <input placeholder='Password' {...register("password", { required: "Password is required", maxLength: {value:128, message:"Max username length is 128"}})} type="password" />
           <div> {errors?.password && <span className='errors-message'>{errors.password.message.toString()}</span>}</div>
