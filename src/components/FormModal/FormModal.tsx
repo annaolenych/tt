@@ -1,20 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ReactModal from "react-modal"
 import "./FormModal.css"
 import { DateTime } from "luxon"
 import { useForm } from "react-hook-form"
-import { getTables, updateCustomer } from "../../util/api"
-import { useDispatch } from "react-redux"
+import { getCustomers, updateCustomer } from "../../util/api"
+import { useDispatch, useSelector } from "react-redux"
 import { tableSlice } from "../../store/store"
+import { selectTableOffset, selectTableSize } from "../../store/selectors"
 
 
 ReactModal.setAppElement("#root")
 export const FormModal = ({ customer }) => {
+    const pageSize= useSelector(selectTableSize)
+    const pageOffset= useSelector(selectTableOffset)
     const [isOpen, setIsOpen] = useState(false)
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
-    console.log(customer)
+   useEffect(()=>{reset()},[dispatch, customer.id])
+    
     return (
         <>
 
@@ -35,13 +39,15 @@ export const FormModal = ({ customer }) => {
                     try {
                         setIsLoading(true)
                         await updateCustomer(customer.id, data)
-                        const customers = await getTables()
-                        dispatch(tableSlice.actions.setTableData(customers))
+                        const {results} = await getCustomers(pageSize, pageOffset)
+                        dispatch(tableSlice.actions.setTableData(results))
                     } catch {
 
                     } finally {
                         setIsOpen(false)
-                        // setIsLoading(false)
+
+                        setIsLoading(false)
+                        reset()
                     }
 
                 })}>
