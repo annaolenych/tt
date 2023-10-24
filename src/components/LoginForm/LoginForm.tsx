@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { Console } from 'console';
 import { Environment } from '../../constants/environment';
+import { redirect,useNavigate } from 'react-router-dom';
 
 
 
@@ -11,16 +12,18 @@ const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError]= useState()
   const [isLoading, setIsLoading]= useState(false)
-  console.log(errors);
+  const navigate = useNavigate()
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit(async (data) => {
-        try {
+        try { 
           setError(undefined)
           setIsLoading(true)
           const res = await axios.post(`${Environment.BACKEND_LINK}/api/login/`, data)
-          console.log(res)
+          if(res.status===200){
+           return navigate("/table")
+          }
         } catch (error) {
           setError(error.response.data.error)
          }finally{

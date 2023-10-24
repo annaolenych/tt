@@ -1,0 +1,30 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; 
+  }
+  
+  .button-container button {
+    margin: 0 10px; 
+    
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0; 
+  }
+  
+  .input-container label {
+    width: 150px; 
+    margin-right: 10px;
+  }
+  
+  .input-container input {
+    flex: 1; 
+  }
+  

@@ -1,4 +1,4 @@
 export const Environment = {
-    BACKEND_LINK: 'http://146.190.118.121'
+    BACKEND_LINK: 'https://technical-task-api.icapgroupgmbh.com'
 
 }
